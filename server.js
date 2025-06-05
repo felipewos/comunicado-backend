@@ -20,7 +20,7 @@ app.post('/enviar-comunicado', async (req, res) => {
   });
 
   const mailOptions = {
-    from: `"Sistema de Comunicados CEFET/RJ" <${process.env.EMAIL_USER}>`,
+    from: `"Setor de Disciplina" <${process.env.EMAIL_USER}>`,
     to: destinatario,
     subject: `Solicitação de Assinatura de Advertência`,
     text: `Prezado(a) Coordenador(a),
@@ -33,8 +33,7 @@ Caso haja qualquer dúvida ou necessidade de ajustes, estou à disposição.
 
 Este e-mail também foi encaminhado à Gerência Acadêmica e à SAPED para ciência.
 
-Atenciosamente,
-Sistema de Comunicados CEFET/RJ`,
+Atenciosamente,`,
     attachments: [
       {
         filename: nomeArquivo,
