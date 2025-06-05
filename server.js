@@ -19,6 +19,8 @@ app.post('/enviar-comunicado', async (req, res) => {
     }
   });
 
+  const { nomeArquivo, pdfBase64, destinatario, nome, numero } = req.body;
+
   const mailOptions = {
     from: `"Setor de Disciplina" <${process.env.EMAIL_USER}>`,
     to: destinatario,
