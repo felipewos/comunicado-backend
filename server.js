@@ -33,7 +33,13 @@ Caso haja qualquer dúvida ou necessidade de ajustes, estou à disposição.
 
 Este e-mail também foi encaminhado à Gerência Acadêmica e à SAPED para ciência.
 
-Atenciosamente,`,
+Atenciosamente,
+
+Felipe Wagner de O. e Silva
+Chefe do Setor de Disciplina
+Campus Petrópolis
+(24)2292-9718
+www.cefet-rj.br`,
     attachments: [
       {
         filename: nomeArquivo,
