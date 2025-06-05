@@ -20,18 +20,31 @@ app.post('/enviar-comunicado', async (req, res) => {
   });
 
   const mailOptions = {
-    from: `"Sistema CEFET" <${process.env.EMAIL_USER}>`,
-    to: destinatario,
-    subject: `Comunicado Escolar - ${nomeArquivo}`,
-    text: 'Segue em anexo o comunicado gerado automaticamente.',
-    attachments: [
-      {
-        filename: nomeArquivo,
-        content: Buffer.from(pdfBase64, 'base64'),
-        encoding: 'base64'
-      }
-    ]
-  };
+  from: `"Sistema CEFET" <${process.env.EMAIL_USER}>`,
+  to: destinatario,
+  subject: "Solicitação de Assinatura de Advertência",
+  text: `Prezado(a) Coordenador(a),
+
+Encaminho, em anexo, o Comunicado de Advertência nº {{numero}}, referente ao(a) aluno(a) {{nome}}, para sua ciência e assinatura.
+
+Solicito que, por gentileza, revise e assine o documento, a fim de prosseguirmos com os trâmites internos. 
+
+Caso haja qualquer dúvida ou necessidade de ajustes, estou à disposição.
+
+Este e-mail também foi encaminhado à Gerência Acadêmica e à SAPED para ciência.
+
+Atenciosamente,
+Sistema de Comunicados CEFET/RJ
+`,
+  attachments: [
+    {
+      filename: nomeArquivo,
+      content: Buffer.from(pdfBase64, 'base64'),
+      encoding: 'base64'
+    }
+  ]
+};
+
 
   try {
     await transporter.sendMail(mailOptions);
