@@ -25,7 +25,7 @@ app.post('/enviar-comunicado', async (req, res) => {
   subject: "Solicitação de Assinatura de Advertência",
   text: `Prezado(a) Coordenador(a),
 
-Encaminho, em anexo, o Comunicado de Advertência, referente ao(à) aluno(a), para sua ciência e assinatura.
+Encaminho, em anexo, o Comunicado de Advertência nº ${nomeArquivo.match(/\d+/)?.[0] || '---'}, referente ao(à) aluno(a) ${nome}, para sua ciência e assinatura.
 
 Solicito que, por gentileza, revise e assine o documento, a fim de prosseguirmos com os trâmites internos.
 
@@ -34,6 +34,7 @@ Caso haja qualquer dúvida ou necessidade de ajustes, estou à disposição.
 Este e-mail também foi encaminhado à Gerência Acadêmica e à SAPED para ciência.
 
 Atenciosamente,`,
+
   attachments: [
     {
       filename: nomeArquivo,
