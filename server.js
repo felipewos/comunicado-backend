@@ -20,7 +20,7 @@ app.post('/enviar-comunicado', async (req, res) => {
   });
 
   const mailOptions = {
-  from: `"Sistema CEFET" <${process.env.EMAIL_USER}>`,
+  from: `"Setor de Disciplina" <${process.env.EMAIL_USER}>`,
   to: destinatario,
   subject: "Solicitação de Assinatura de Advertência",
   text: `Prezado(a) Coordenador(a),
