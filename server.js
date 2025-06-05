@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 
 app.post('/enviar-comunicado', async (req, res) => {
-  const { nomeArquivo, pdfBase64, destinatario } = req.body;
+  const { nomeArquivo, pdfBase64, destinatario, nome, numero } = req.body;
 
   const transporter = nodemailer.createTransport({
     service: 'Outlook365',
@@ -20,12 +20,12 @@ app.post('/enviar-comunicado', async (req, res) => {
   });
 
   const mailOptions = {
-  from: `"Setor de Disciplina" <${process.env.EMAIL_USER}>`,
-  to: destinatario,
-  subject: "Solicitação de Assinatura de Advertência",
-  text: `Prezado(a) Coordenador(a),
+    from: `"Sistema de Comunicados CEFET/RJ" <${process.env.EMAIL_USER}>`,
+    to: destinatario,
+    subject: `Solicitação de Assinatura de Advertência`,
+    text: `Prezado(a) Coordenador(a),
 
-Encaminho, em anexo, o Comunicado de Advertência nº ${nomeArquivo.match(/\d+/)?.[0] || '---'}, referente ao(à) aluno(a) ${nome}, para sua ciência e assinatura.
+Encaminho, em anexo, o Comunicado de Advertência nº ${numero}, referente ao(à) aluno(a) ${nome}, para sua ciência e assinatura.
 
 Solicito que, por gentileza, revise e assine o documento, a fim de prosseguirmos com os trâmites internos.
 
@@ -33,17 +33,16 @@ Caso haja qualquer dúvida ou necessidade de ajustes, estou à disposição.
 
 Este e-mail também foi encaminhado à Gerência Acadêmica e à SAPED para ciência.
 
-Atenciosamente,`,
-
-  attachments: [
-    {
-      filename: nomeArquivo,
-      content: Buffer.from(pdfBase64, 'base64'),
-      encoding: 'base64'
-    }
-  ]
-};
-
+Atenciosamente,
+Sistema de Comunicados CEFET/RJ`,
+    attachments: [
+      {
+        filename: nomeArquivo,
+        content: Buffer.from(pdfBase64, 'base64'),
+        encoding: 'base64'
+      }
+    ]
+  };
 
   try {
     await transporter.sendMail(mailOptions);
